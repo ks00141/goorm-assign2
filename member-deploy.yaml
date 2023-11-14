@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: member-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: member
+  template:
+    metadata:
+      labels:
+        app: member
+    spec:
+      containers:
+        - image: ks00141/member
+          name: member
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENV_DB_URL
+              value: "jdbc:mysql://mysql-service:3306/member"
+            - name: ENV_DB_USERNAME
+              value: "root"
+            - name: ENV_DB_PWD
+              value: "root"

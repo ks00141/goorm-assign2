@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: index-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: index
+  template:
+    metadata:
+      labels:
+        app: index
+    spec:
+      containers:
+        - image: ks00141/index-page
+          name: index
+          ports:
+            - containerPort: 8080
